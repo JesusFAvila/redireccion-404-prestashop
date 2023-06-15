@@ -1,0 +1,15 @@
+# En el archivo .htacess de Prestashop
+# Insertar la siguiente línea de código antes de cerrar IfModule: 
+
+# RewriteCond %{REQUEST_URI} ^/URL DE LA PÁGINA$ [NC]
+# RewriteRule .* / [R=301,L]
+
+# ~~start~~ Do not remove this comment, Prestashop will keep automatically
+  <IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteRule . - [E=REWRITEBASE:/tu-directorio-prestashop/]
+    RewriteRule .? %{ENV:REWRITEBASE}index.php [NC,L]
+    RewriteCond %{REQUEST_URI} ^/pagina-no-encontrada$ [NC]
+    RewriteRule .* / [R=301,L]
+  </IfModule>
+# ~~end~~ Do not remove this comment, Prestashop will keep automatically
